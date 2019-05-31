@@ -1,0 +1,68 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+html, body { 
+    height: 100%; 
+    background-color: rgb(184, 174, 174);
+}
+
+.container-img img{
+    width: 50%;
+    height: auto;
+    text-align:center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.header-image{
+    background-size: cover;
+    text-align: center;
+}
+
+.pokemon-card{
+    max-width: 400px;
+    margin:100px;
+    background-color: red;
+    border-style: solid;
+}
+
+.form-input{
+    margin: auto;
+    margin-right: auto;
+    margin-left: auto;
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+.form-input-full-width{
+    width: 100%;
+}
+
+.mat-form{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    
+    
+}
+
+.pokemon-img{
+    width: 150px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img{
+    height: 300px;
+    width: 300px;
+
+}
+
+.search{
+    text-align: center;
+}
+

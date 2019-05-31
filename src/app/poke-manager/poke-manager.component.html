@@ -1,0 +1,90 @@
+<div class="search">
+  <form class="form-input">
+    <mat-form-field class="form-input-full-width">
+      <input [(ngModel)]='name' name="pokemonName" matInput placeholder="search Pokemon">
+    </mat-form-field>
+  </form>
+</div>
+
+
+<div class = mat-form>
+  <mat-form-field>
+    <mat-label>Pokemon Search</mat-label>
+    <mat-select [(ngModel)]="searchString">  
+        <mat-option *ngFor="let pokemon of listPokemon |filterPokemon :'name' : name" [value]="pokemon.id">
+            {{pokemon.name}}
+        </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-fab color="accent" (click)="choosePokemon()">GO</button>
+</div>
+
+<!-- For choosed pokemon-->
+<div *ngIf="choosed">
+  <mat-card class="pokemon-card" >
+    <mat-card-header>
+      <div mat-card-avatar class="header-image"></div>
+      <mat-card-title>{{myPokemon.name}}</mat-card-title>
+      <mat-card-subtitle> id : {{searchString}} </mat-card-subtitle>
+    </mat-card-header>
+
+    <img class = "img-card-pokemon" *ngIf="urlImage != ''" [src]="urlImage">
+
+    <mat-card-content>
+      <app-info-pokemon></app-info-pokemon>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-button mat-fab color="primary"(click) = "toogleChooseFalse()">Back</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<!--*********************************************************-->
+
+
+<!-- For choosed pokemon BY CARD-->
+<div *ngIf="choosedByCard">
+  <mat-card class="pokemon-card" >
+    <mat-card-header>
+      <div mat-card-avatar class="header-image"></div>
+      <mat-card-title style="font-size: 50px; font-weight: bold">{{myPokemon.name}}</mat-card-title>
+      <mat-card-subtitle style="font-size: 40px; font-weight: bold"> id : {{myPokemon.id}} </mat-card-subtitle>
+    </mat-card-header>
+
+    <img class = "img-card-pokemon" *ngIf="urlImage != ''" [src]="urlImage">
+
+    <mat-card-content>
+      <app-info-pokemon></app-info-pokemon>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-button mat-fab color="primary"(click) = "toogleChooseCardFalse()">Back</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+<!-- ******************************************************************************************** -->
+
+
+<!-- Display All Pokemons -->
+<div *ngIf="choosedByCard != true"> 
+  <div *ngIf="choosed != true">
+    <div>
+      <mat-grid-list cols="4" rowHeight="300px" >
+        <mat-grid-tile *ngFor="let pokemon of listPokemon |filterPokemon :'name' : name" style="background-color:red;" >
+          <mat-grid-tile-header (click) = "choosePokemonByCard($event)">#{{pokemon.id}} {{pokemon.name}}</mat-grid-tile-header>
+        <img class = "pokemon-img" src= {{pokemon.sprite}} (click) = "choosePokemonByCard(pokemon)">
+        </mat-grid-tile>  
+
+      </mat-grid-list>
+
+    </div>
+  </div>
+</div>
+
+<!-- *****************************************************************************-->
+
+<div>
+  <button (click) = 'getTypePokemons()'> Type </button>
+</div>
+
