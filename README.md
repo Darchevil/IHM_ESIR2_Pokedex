@@ -112,7 +112,45 @@ qui permet d'injecter le service dans le composant poke-manager.
 
 ## Q13
 
+La méthode pour récupérer les pokémons dans l'API se situe dans le composant poke-manager et s'appelle "getPokemons()". Il utilise le subscribe() afin de s'abonner au service et de récupérer les données. La méthode est ici : 
 
+```
+ getPokemons()
+  {
+    this.myService.getPokemon().subscribe(data => {
+    data.results.forEach((element,i) => {
+      //Créer un tableau et inclure à chaque fois le type de pokémon et le rentrer dans le new Pokemon
+    var poke=  new Pokemon(i,element.name, "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+(i+1) +".png",element.url, this.listTypePokemon[i]); //On parcours le tableau et on attribue à la variable poke un nouveau pokemon
+    this.listPokemon.push(poke); //On pousse la variable dans un tableau
+    });
+    console.log(this.listPokemon);
+    });
+  }
+
+```
+
+### Q14
+
+J'ai créé un composant qui s'appelle "info-pokemon.component" et je lui ai ajouté le providers [PokeServiceService] de mon service afin qu'il puisse lui aussi récupérer les données via le service. Elle partage les informations avec le composant poke-manager.
+
+## Q15 & Q16
+
+Mon observable créé sur mon service permet de mettre à jour constamment les informations liées au changement de pokémon.
+
+
+## Les fonctionnalités ajoutées 
+
+ le pokédex affiche : 
+ - L'id
+ - Le nom
+ - La photo du pokemon 
+
+L'utilisateur peut avoir accès à ces informations en cliquant : 
+- Sur la liste déroulante (il faut d'abord chercher un pokémon sur la barre de recherche avant d'utiliser la liste déroulante)
+- Sur les différentes cartes de pokémon qui s'affichent.
+
+
+La liste des pokémons qui s'affichent est mise à jour lorsqu'on recherche un pokémon sur la barre de recherche.
 
 
 
